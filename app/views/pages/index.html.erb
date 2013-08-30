@@ -1,0 +1,98 @@
+
+<div class="container">
+  <!--navbar-->
+  <div class="row">
+    <div class="span10 offset1" style="position: relative">
+      <div class="cover">
+        <img class="profilePic" src="/assets/profile.jpg"></img>
+      </div>
+    </div>
+    <div class="span10">
+      <p></p>
+    </div>
+  </div>
+
+  <div class ="row">
+    <div class="span3 offset1">
+      <div class="popover bottom">
+        <div class="arrow"></div>
+        <h3 class="popover-title"><%= @user.first_name%> <%= @user.last_name%></h3>
+
+        <div class="popover-content">
+          <p>Studied at : <%= @user.education %></p>
+          <p>Hobbies : <%= @user.hobby %></p>
+          <p>Birthday : <%= @user.birthday.to_s %></p>
+          <p>In Relationship with : <%= @user.relationship %></p>
+          <%= link_to 'Edit',edit_user_path(@user), class:"btn btn-info btn-mini" %>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="span6">
+     <div style="background-color: #E2E2E2; padding: 15px 15px 2px 15px; border-radius: 20px">     
+      <%= form_tag("/", method: "post", remote:true, class:"new_post") do %>
+      <%= text_area_tag :content,nil, class:"span12 content", placeholder:"What's on your mind", row:"3" %>
+      <%= submit_tag("Post", class:"btn") %>
+      <% end %>
+
+    </div>
+    <br>
+    <div style="background-color: #E2E2E2; padding: 15px 15px 2px 1px; border-radius: 20px">
+      <ul class="posts_list" >
+        <% for post in @posts %>
+        <li class="post">
+          <div class= "postHeader" >
+            <div class="span1 crop">
+            <img class= "span1 commentImage" src="/assets/profile.jpg" >
+          </div>
+            <p class= "postName"><%= @user.first_name%> <%= @user.last_name%></p>
+          </div> 
+          <div class="postContent">
+
+            <%= post.content %>
+
+          </div>
+
+          <div class="separator"></div>
+          <div class="commentSection">
+
+          <ul class="comment">
+
+          </ul>
+
+        </div>
+        
+
+        <!--  <div class="row" style="background-color: #FFFFFF">
+            <div class="span3 commentPanelL">
+              <textarea class="commentField" rows="1" placeholder="Write a comment..."></textarea>
+            </div>
+            <div class="span3 commentPanelR">
+              <button class="btn btn-small btn-primary">
+  Comment
+</button>s
+            </div> 
+          </div> -->
+          <div class="row" style="background-color: #E2E2E2">
+            <div class="span1 commentButton">
+              <button class="btn btn-small btn-primary">Comment</button>
+            </div>
+            <div class="span3" style="background-color: #E2E2E2; padding-left:4px">
+            <textarea  class="offset commentField" rows="1" placeholder="Write a comment..."></textarea>
+            </div>
+
+          </div>
+
+        </li>
+        <br>
+        <% end %>
+
+
+      </ul>
+    </div>
+    </div>
+
+  </div>  
+</div>
+</div>
